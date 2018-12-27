@@ -1,22 +1,25 @@
 package ba.unsa.etf.rpr;
 
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-
-public class Grad {
+public class Grad implements Comparable{
     private int id;
-    private SimpleStringProperty naziv = new SimpleStringProperty("");
-    private SimpleIntegerProperty brojStanovnika = new SimpleIntegerProperty(0);
-    private Drzava drzava = null;
+    private String naziv;
+    private int BrojStanovnika;
+    private Drzava drzava;
 
-    public Grad() {
+    public Grad(){};
+
+    public Grad(int id, String naziv, int broj_stanovnika, Drzava drzava) {
+        this.id = id;
+        this.naziv = naziv;
+        this.BrojStanovnika = broj_stanovnika;
+        this.drzava = drzava;
     }
 
-    public Grad(int id, String naziv, int brojStanovnika, Drzava drzava) {
-        this.setId(id);
-        this.setNaziv(naziv);
-        this.setBrojStanovnika(brojStanovnika);
-        this.setDrzava(drzava);
+    public int compareTo(Object o){
+        Grad g = (Grad) o;
+        if(this.BrojStanovnika > g.getBrojStanovnika()) return -1;
+        if(this.BrojStanovnika < g.getBrojStanovnika()) return 1;
+        return 0;
     }
 
     public int getId() {
@@ -28,39 +31,26 @@ public class Grad {
     }
 
     public String getNaziv() {
-        return this.naziv.get();
-    }
-
-    public SimpleStringProperty nazivProperty() {
-        return this.naziv;
+        return naziv;
     }
 
     public void setNaziv(String naziv) {
-        this.naziv.set(naziv);
+        this.naziv = naziv;
     }
 
     public int getBrojStanovnika() {
-        return this.brojStanovnika.get();
-    }
-
-    public SimpleIntegerProperty brojStanovnikaProperty() {
-        return this.brojStanovnika;
+        return BrojStanovnika;
     }
 
     public void setBrojStanovnika(int brojStanovnika) {
-        this.brojStanovnika.set(brojStanovnika);
+        this.BrojStanovnika = brojStanovnika;
     }
 
     public Drzava getDrzava() {
-        return this.drzava;
+        return drzava;
     }
 
     public void setDrzava(Drzava drzava) {
         this.drzava = drzava;
-    }
-
-    @Override
-    public String toString() {
-        return this.getNaziv() + " (" + this.getDrzava() + ") - " + this.getBrojStanovnika();
     }
 }
