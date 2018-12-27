@@ -13,15 +13,15 @@ import java.util.Scanner;
 
 
 public class Main extends Application {
-    static String ispisiGradove(){
+    static String ispisiGradove() {
         String s = "";
         GeografijaDAO gd = new GeografijaDAO();
         ArrayList<Grad> gradovi = gd.gradovi();
         ArrayList<Drzava> drzave = gd.drzavaId();
 
-        for(Grad g: gradovi){
-            for(Drzava d: drzave) {
-                if(g.getDrzava().getId() == d.getId())
+        for (Grad g : gradovi) {
+            for (Drzava d : drzave) {
+                if (g.getDrzava().getId() == d.getId())
                     s += g.getNaziv() + " (" + d.getNaziv() + ") - " + g.getBrojStanovnika() + "\n";
             }
         }
@@ -29,7 +29,7 @@ public class Main extends Application {
         return s;
     }
 
-    static void glavniGrad(){
+    static void glavniGrad() {
         System.out.println("Unesite naziv drzave: ");
         String unos;
         Scanner ulaz = new Scanner(System.in);
@@ -38,7 +38,7 @@ public class Main extends Application {
         GeografijaDAO gd = new GeografijaDAO();
 
         Grad g = gd.glavniGrad(unos);
-        if(g == null) System.out.println("Nepostojeća država");
+        if (g == null) System.out.println("Nepostojeća država");
         else System.out.println("Glavni grad države " + unos + " je " + g.getNaziv());
     }
 
@@ -57,9 +57,11 @@ public class Main extends Application {
         primaryStage.setResizable(false);
 
     }
+
     public static void main(String[] args) {
         launch(args);
         glavniGrad();
         ispisiGradove();
         System.out.println(ispisiGradove());
     }
+}

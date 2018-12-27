@@ -96,7 +96,7 @@ public class GradoviReport implements Initializable {
         }
     }
 
-    public void showReport(javafx.event.ActionEvent actionEvent) {
+    public void showReport(ActionEvent actionEvent) {
         try {
             new PrintReport().showReport(model.getConn());
         } catch (JRException e1) {
